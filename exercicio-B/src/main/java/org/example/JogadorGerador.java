@@ -58,11 +58,11 @@ public class JogadorGerador {
             int idade = (int) Math.floor(Math.random() * 24) + 17;
 
             Jogador jogador = new Jogador(
-                    nome=nome,
-                    sobrenome=sobrenome,
-                    posicao=posicao,
-                    idade=idade,
-                    clube=clube
+                    nome,
+                    sobrenome,
+                    posicao,
+                    idade,
+                    clube
             );
             listaJogadores.add(jogador);
         }
