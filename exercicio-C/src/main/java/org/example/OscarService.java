@@ -16,11 +16,10 @@ public class OscarService {
     public void mostrarListaIndicados() {
         for (Indicacao indicacao : indicacoes) {
             Indicavel indicavel = indicacao.getIndicavel();
-            String textinho = " foi indicado para o oscar de " + indicacao.getCategoria() + ".";
-
-            String mensagem = (indicacao.getIndicavel() instanceof Ator) ? ("O ator " + ((Ator) indicavel).getNome()) : ("O filme " + ((Filme) indicavel).getNome()) + textinho;
+            String textinho = " foi indicado para o Oscar de " + indicacao.getCategoria() + ". É sua ";
+    
+            String mensagem = (indicavel instanceof Ator) ? ("O ator " + ((Ator) indicavel).getNome()) + textinho + indicavel.getNumeroDeIndicacoes() + "ª indicação." : ("O filme " + ((Filme) indicavel).getNome()) + textinho + indicavel.getNumeroDeIndicacoes() + "ª indicação.";
             System.out.println(mensagem);
-
         }
     }
 }

@@ -1,13 +1,17 @@
 package org.example;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
+@Qualifier("filme")
 public class Filme implements Indicavel {
     private String nome;
     private String genero;
     private boolean elegivel;
     private short numeroDeIndicacoes = 0;
-    
     
     public Filme(String nome, String genero, boolean elegivel) {
         this.nome = nome;
@@ -32,7 +36,7 @@ public class Filme implements Indicavel {
         return numeroDeIndicacoes;
     }
     @Override
-    public void setNumeroDeIndicacoes(short numeroDeIndicacoes) {
-        this.numeroDeIndicacoes = numeroDeIndicacoes;
+    public void updateNumeroDeIndicacoes() {
+        this.numeroDeIndicacoes += 1;
     }
 }

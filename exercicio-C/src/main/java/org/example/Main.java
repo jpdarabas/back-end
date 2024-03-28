@@ -9,15 +9,35 @@ public class Main {
 
         OscarService oscarService = context.getBean(OscarService.class);
 
-        for (int i = 1; i<11; i++){
-            short aleatorio = (short) Math.ceil(Math.random()*2);
+        
+        for (int i = 1; i < 11; i++) {
+            boolean atorOuFilme = Math.random() < 0.5;
+            boolean elegivel = Math.random() < 0.5;
 
-            Indicavel indicado = (aleatorio == 0)? context.getBean(Ator.class, "Ator_"+ i, "Brasil") : context.getBean(Filme.class, "Filme_"+ i, "Ação");
+            if (atorOuFilme) {
+                Indicavel indicado = (Indicavel) context.getBean(Ator.class, "Ator_" + i, "Brasil", elegivel);
+                
+                Indicacao indicacao = context.getBean(Indicacao.class);
+                indicacao.setIndicavelAtor(indicado, "Melhor Ator");
+                if (elegivel){
+                oscarService.adicionarIndicacao(indicacao);
+                }else{
+                    System.out.println("Erro: O ator não é elegível para a indicação.");
+                }
+            } else {
+                Indicavel indicado = (Indicavel) context.getBean(Filme.class, "Filme_" + i, "Ação", elegivel);
+
+                Indicacao indicacao = context.getBean(Indicacao.class);
+                indicacao.setIndicavelFilme(indicado, "Melhor Filme");
+                if (elegivel){
+                oscarService.adicionarIndicacao(indicacao);
+                }else{
+                    System.out.println("Erro: O filme não é elegível para a indicação.");
+                }
             }
-            Indicacao indicacao = context.getBean(Indicacao.class, indicado, "O melhor");
-
-            oscarService.adicionarIndicacao(indicacao);
+            
         }
-
+        System.out.println("------------------------------------------------------------------------------------");
         oscarService.mostrarListaIndicados();
+    }
 }

@@ -5,5 +5,5 @@ public interface Indicavel {
 
     short getNumeroDeIndicacoes();
 
-    void setNumeroDeIndicacoes(short numeroDeIndicacoes); 
+    void updateNumeroDeIndicacoes(); 
 }

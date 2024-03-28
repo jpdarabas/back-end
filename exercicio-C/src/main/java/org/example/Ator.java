@@ -1,7 +1,12 @@
 package org.example;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
+@Qualifier("ator")
 public class Ator implements Indicavel {
     private String nome;
     private String nacionalidade;
@@ -29,7 +34,7 @@ public class Ator implements Indicavel {
         return numeroDeIndicacoes;
     }
     @Override
-    public void setNumeroDeIndicacoes(short numeroDeIndicacoes) {
-        this.numeroDeIndicacoes = numeroDeIndicacoes;
+    public void updateNumeroDeIndicacoes() {
+        this.numeroDeIndicacoes += 1;
     }
 }
